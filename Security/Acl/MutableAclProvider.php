@@ -453,7 +453,9 @@ class MutableAclProvider extends AclProvider implements MutableAclProviderInterf
             if (null === $ace->getId()) {
                 $sid = $this->getSecurityIdentityQuery($ace->getSecurityIdentity());
 
-                $objectIdentityId = $name === 'classAces' ? null : $ace->getAcl()->getId();
+                //todo надо разобраться
+//                $objectIdentityId = $name === 'classAces' ? null : $ace->getAcl()->getId();
+                $objectIdentityId = $ace->getAcl()->getId();
 
                 $aceId = (string)$this->insertAccessControlEntry($objectIdentityId, null, $i, $sid, $ace->getStrategy(), $ace->getMask(), $ace->isGranting(), $ace->isAuditSuccess(), $ace->isAuditFailure());
                 $this->loadedAces[$aceId] = $ace;
